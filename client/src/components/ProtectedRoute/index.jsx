@@ -4,8 +4,9 @@ import useAuth from "../../utils/canAccess";
 
 const Index = () => {
   const isAuth = useAuth();
+  const can = isAuth === "ROLE_USER" || isAuth === "ROLE_ADMIN";
   console.log(isAuth);
-  return isAuth === "ROLE_USER" ? <Outlet /> : <Navigate to="/login" />;
+  return can ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default Index;
